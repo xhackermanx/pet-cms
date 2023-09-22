@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: sfera-mp-adapter
+      POSTGRES_DB: sfera-mp-adapter
+      POSTGRES_USER: sfera-mp-adapter
+    volumes:
+      - ./docker/db-data:/var/lib/postgresql/data
+    ports:
+      - "5424:5432"
+#  adminer:
+#    image: adminer
+#    restart: unless-stopped
+#    ports:
+#      - "8203:8080"
