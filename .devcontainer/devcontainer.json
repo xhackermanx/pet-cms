@@ -1,0 +1,4 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/php:8.2",
+  "name": "simple-devcontainer-php"
+}

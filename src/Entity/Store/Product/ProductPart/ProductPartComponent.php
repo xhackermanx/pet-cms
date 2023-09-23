@@ -3,6 +3,7 @@
 namespace App\Entity\Store\Product\ProductPart;
 
 use App\Entity\Store\Product\Product;
+use App\Entity\Store\Product\ProductPart\Field\Field;
 use App\Repository\Store\Product\ProductPart\ProductPartComponentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -28,6 +29,9 @@ abstract class ProductPartComponent
     #[ORM\ManyToMany(targetEntity: Product::class, inversedBy: 'parts')]
     private Collection $product;
 
+    #[ORM\ManyToOne(inversedBy: 'parts')]
+    private ?CompositeProductPart $parent = null;
+
     public function __construct()
     {
         $this->product = new ArrayCollection();
@@ -46,6 +50,11 @@ abstract class ProductPartComponent
         return $this->product;
     }
 
+    /**
+     * @return Collection<int, Field>
+     */
+    abstract public function getFields(): Collection;
+
     public function addProduct(Product $product): static
     {
         if (!$this->product->contains($product)) {
@@ -58,6 +67,18 @@ abstract class ProductPartComponent
     public function removeProduct(Product $product): static
     {
         $this->product->removeElement($product);
+
+        return $this;
+    }
+
+    public function getParent(): ?CompositeProductPart
+    {
+        return $this->parent;
+    }
+
+    public function setParent(?CompositeProductPart $parent): static
+    {
+        $this->parent = $parent;
 
         return $this;
     }
