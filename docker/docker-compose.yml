@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: pet-cms
+      POSTGRES_DB: pet-cms
+      POSTGRES_USER: pet-cms
+    volumes:
+      - ./docker/db-data:/var/lib/postgresql/data
+    ports:
+      - "5424:5432"
