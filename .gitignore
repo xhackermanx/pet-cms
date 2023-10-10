@@ -1,4 +1,5 @@
 /.idea/
+/docker/db-data/
 /docker/db-data-*/
 ###> symfony/framework-bundle ###
 /.env.local
@@ -14,4 +15,5 @@
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+
 
