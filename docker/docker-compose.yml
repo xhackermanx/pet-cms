@@ -1,6 +1,11 @@
 version: '3.8'
 
 services:
+  adminer:
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - "8054:8080"
   db:
     image: postgres:15-alpine
     restart: unless-stopped
@@ -23,3 +28,17 @@ services:
       - ./db-data-test:/var/lib/postgresql/data
     ports:
       - "5425:5432"
+  memcached:
+    image: memcached:1.6.21-alpine
+    restart: unless-stopped
+    ports:
+      - '11212:11211'
+  redis:
+    image: redis:latest
+    restart: unless-stopped
+    ports:
+      - '6380:6379'
+  redisinsight:
+    image: redislabs/redisinsight:latest
+    ports:
+      - '127.0.0.1:6381:8001'

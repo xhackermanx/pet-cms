@@ -9,7 +9,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class FieldFixture extends Fixture implements DependentFixtureInterface
 {
-    public const PRODUCT_FIELD_REFERENCE = 'field-';
+    public const PRODUCT_FIELD_REFERENCE = 'fields-';
     public const PRODUCT_FIELD_NAMES = [
         'Цвет',
         'Размер футболки',

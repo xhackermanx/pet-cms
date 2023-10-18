@@ -20,6 +20,35 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Entity'
                 prefix: 'App\Entity'
                 alias: App
+        second_level_cache:
+#            region_cache_driver:
+#                type: ~
+#                id: ~
+#                pool: ~
+            region_lock_lifetime: 60
+            log_enabled: true
+            region_lifetime: 0
+            enabled: true
+#            factory: ~
+            regions:
+                # Prototype
+                default_entity_region:
+                    cache_driver:
+                        type: pool
+                        pool: doctrine.second_level_cache_pool
+                    type: filelock
+                    lock_path: '%kernel.cache_dir%/doctrine/orm/slc/filelock'
+#                    lock_lifetime: 60
+#                    type: default
+#                    lifetime: 0
+#                    service: ~
+#                    name: ~
+#            loggers:
+#
+#                # Prototype
+#                name:
+#                    name: ~
+#                    service: ~
 
 when@test:
     doctrine:

@@ -15,5 +15,10 @@ framework:
         #app: cache.adapter.apcu
 
         # Namespaced pools use the above "app" backend by default
-        #pools:
-            #my.dedicated.cache: null
+        pools:
+#            #my.dedicated.cache: null
+            doctrine.second_level_cache_pool:
+                adapter: cache.adapter.redis
+                provider: 'redis://localhost:6380'
+#                adapter: cache.adapter.memcached
+#                provider: 'memcached://localhost:11212'
