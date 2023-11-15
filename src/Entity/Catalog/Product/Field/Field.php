@@ -4,10 +4,18 @@ namespace App\Entity\Catalog\Product\Field;
 
 use App\Repository\Catalog\Product\Field\FieldRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: FieldRepository::class)]
 class Field
 {
+    public const TYPES = [
+        'boolean',
+        'string',
+        'integer',
+        'optioned',
+    ];
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -19,9 +27,25 @@ class Field
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[ORM\Column(length: 255)]
+    #[ORM\JoinColumn(nullable: false)]
+    #[Assert\Choice(choices: Field::TYPES)]
+    private string $fieldType;
+
     #[ORM\ManyToOne(inversedBy: 'fields')]
     #[ORM\JoinColumn(nullable: false)]
     private ?FieldGroup $fieldGroup = null;
+
+    public function __construct(
+        string $fieldType,
+        string $name,
+        string $title,
+    )
+    {
+        $this->title = $title;
+        $this->name = $name;
+        $this->fieldType = $fieldType;
+    }
 
     public function getId(): ?int
     {

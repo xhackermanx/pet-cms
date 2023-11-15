@@ -9,7 +9,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class ProductTypeFixture extends Fixture implements DependentFixtureInterface
 {
-    public const PRODUCT_TYPE_REFERENCE = 'object-type-';
+    public const PRODUCT_TYPE_REFERENCE = 'object-fieldType-';
     public const PRODUCT_TYPES = [
         [
             'name' => 'Тип товара "Футболки"',

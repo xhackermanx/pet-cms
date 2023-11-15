@@ -22,7 +22,7 @@ doctrine:
                 alias: App
         second_level_cache:
 #            region_cache_driver:
-#                type: ~
+#                fieldType: ~
 #                id: ~
 #                pool: ~
             region_lock_lifetime: 60
@@ -39,7 +39,7 @@ doctrine:
                     type: filelock
                     lock_path: '%kernel.cache_dir%/doctrine/orm/slc/filelock'
 #                    lock_lifetime: 60
-#                    type: default
+#                    fieldType: default
 #                    lifetime: 0
 #                    service: ~
 #                    name: ~

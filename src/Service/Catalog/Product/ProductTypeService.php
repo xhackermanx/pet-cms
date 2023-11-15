@@ -3,7 +3,6 @@
 namespace App\Service\Catalog\Product;
 
 use App\Entity\Catalog\Product\ProductType;
-use App\Entity\Catalog\Product\ProductTypeTreeNode;
 use Doctrine\ORM\EntityManagerInterface;
 
 class ProductTypeService
@@ -14,19 +13,19 @@ class ProductTypeService
     {
     }
 
-    public function createProductType(string $name, ?ProductTypeTreeNode $parentProductTypeTreeNode): ProductType
+    public function createProductType(string $name): ProductType
     {
-        $productType = new ProductType();
-        $productType->setName($name);
-
-        $productTypeTreeNode = new ProductTypeTreeNode();
-        $productTypeTreeNode->setParent($parentProductTypeTreeNode);
-        $productTypeTreeNode->setChild($productType);
-
-        $this->entityManager->persist($productType);
-        $this->entityManager->persist($productTypeTreeNode);
-        $this->entityManager->flush();
-
-        return $productType;
+//        $productType = new ProductType();
+//        $productType->setName($name);
+//
+//        $productTypeTreeNode = new ProductTypeTreeNode();
+//        $productTypeTreeNode->setParent($parentProductTypeTreeNode);
+//        $productTypeTreeNode->setChild($productType);
+//
+//        $this->entityManager->persist($productType);
+//        $this->entityManager->persist($productTypeTreeNode);
+//        $this->entityManager->flush();
+//
+//        return $productType;
     }
 }

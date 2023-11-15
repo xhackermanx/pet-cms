@@ -10,7 +10,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class FieldTypeFixture extends Fixture
 {
-    public const FIELD_TYPE_REFERENCE = 'fields-type-';
+    public const FIELD_TYPE_REFERENCE = 'fields-fieldType-';
     public const FIELD_TYPE_NAMES = [
         'Строка',
     ];
