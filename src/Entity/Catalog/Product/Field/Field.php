@@ -28,7 +28,6 @@ class Field
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
-    #[ORM\JoinColumn(nullable: false)]
     #[Assert\Choice(choices: Field::TYPES)]
     private string $fieldType;
 

@@ -26,7 +26,7 @@ class ProductPart
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(cascade: ['persist'], inversedBy: 'products')]
+    #[ORM\ManyToOne(cascade: ['persist'], inversedBy: 'parts')]
     #[Assert\NotNull]
     protected ?ProductType $type = null;
 

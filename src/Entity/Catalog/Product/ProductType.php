@@ -3,6 +3,7 @@
 namespace App\Entity\Catalog\Product;
 
 use App\Entity\Catalog\Product\Field\FieldGroup;
+use App\Entity\Catalog\Product\ProductPart;
 use App\Repository\Catalog\Product\ProductTypeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -22,8 +23,8 @@ class ProductType
     #[ORM\OneToMany(mappedBy: 'type', targetEntity: FieldGroup::class)]
     private Collection $fieldGroups;
 
-    #[ORM\OneToMany(mappedBy: 'fieldType', targetEntity: Product::class)]
-    private Collection $products;
+    #[ORM\OneToMany(mappedBy: 'type', targetEntity: ProductPart::class)]
+    private Collection $parts;
 
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'children')]
     private ?self $parent = null;
@@ -34,7 +35,7 @@ class ProductType
     public function __construct()
     {
         $this->fieldGroups = new ArrayCollection();
-        $this->products = new ArrayCollection();
+        $this->parts = new ArrayCollection();
         $this->children = new ArrayCollection();
     }
 
@@ -86,29 +87,29 @@ class ProductType
     }
 
     /**
-     * @return Collection<int, Product>
+     * @return Collection<int, ProductPart>
      */
-    public function getProducts(): Collection
+    public function getParts(): Collection
     {
-        return $this->products;
+        return $this->parts;
     }
 
-    public function addProduct(Product $product): static
+    public function addPart(ProductPart $part): static
     {
-        if (!$this->products->contains($product)) {
-            $this->products->add($product);
-            $product->setType($this);
+        if (!$this->parts->contains($part)) {
+            $this->parts->add($part);
+            $part->setType($this);
         }
 
         return $this;
     }
 
-    public function removeProduct(Product $product): static
+    public function removePart(ProductPart $part): static
     {
-        if ($this->products->removeElement($product)) {
+        if ($this->parts->removeElement($part)) {
             // set the owning side to null (unless already changed)
-            if ($product->getType() === $this) {
-                $product->setType(null);
+            if ($part->getType() === $this) {
+                $part->setType(null);
             }
         }
 
